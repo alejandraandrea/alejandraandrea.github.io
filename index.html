@@ -1,162 +1,245 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" data-theme="dark">
 <head>
   <meta charset="utf-8">
+  <title>Alejandra Tapia — Investigadora</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Alejandra Tapia – Investigadora</title>
+  <meta name="color-scheme" content="dark light">
   <style>
-    /* ---------- Estilo general ---------- */
-    body {
-      font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      color: #333;
-      background-color: #fff;
-      line-height: 1.6;
+    :root{
+      --bg: #0e0f12;
+      --bg-soft:#15171c;
+      --text:#e8e8e8;
+      --muted:#a8a8a8;
+      --accent:#7aa2f7;
+      --border:#252733;
+      --card:#13151a;
+      --shadow: 0 10px 20px rgba(0,0,0,.25);
+      --radius: 12px;
+      --maxw: 860px;
     }
-
-    header {
-      background: #004080;
-      color: white;
-      text-align: center;
-      padding: 2rem 1rem;
+    [data-theme="light"]{
+      --bg:#ffffff;
+      --bg-soft:#f6f7fb;
+      --text:#1c1e21;
+      --muted:#5f6572;
+      --accent:#2b59ff;
+      --border:#e6e8ef;
+      --card:#ffffff;
+      --shadow: 0 10px 20px rgba(0,0,0,.08);
     }
-
-    header h1 {
-      margin: 0;
-      font-size: 2.2em;
+    @media (prefers-color-scheme: light){
+      html[data-theme="auto"]{
+        --bg:#ffffff;
+        --bg-soft:#f6f7fb;
+        --text:#1c1e21;
+        --muted:#5f6572;
+        --accent:#2b59ff;
+        --border:#e6e8ef;
+        --card:#ffffff;
+        --shadow: 0 10px 20px rgba(0,0,0,.08);
+      }
     }
-
-    header p {
-      font-size: 1.1em;
-      margin-top: 0.3em;
+    html,body{height:100%}
+    body{
+      margin:0;
+      font:16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background:var(--bg);
+      color:var(--text);
+      -webkit-font-smoothing:antialiased;
+      text-rendering:optimizeLegibility;
     }
-
-    nav {
-      background: #f4f4f4;
-      text-align: center;
-      padding: 0.6rem;
-      border-bottom: 1px solid #ddd;
+    a{color:var(--accent);text-decoration:none}
+    a:hover{text-decoration:underline}
+    .wrap{max-width:var(--maxw);margin:0 auto;padding:24px}
+    header{
+      display:flex;gap:18px;align-items:center;justify-content:space-between;
+      padding:20px 0;border-bottom:1px solid var(--border);
     }
-
-    nav a {
-      color: #004080;
-      text-decoration: none;
-      margin: 0 12px;
-      font-weight: 600;
+    .brand{
+      display:flex;align-items:center;gap:12px;
     }
-
-    nav a:hover {
-      text-decoration: underline;
+    .avatar{
+      width:56px;height:56px;border-radius:999px;object-fit:cover;border:1px solid var(--border);
+      background:#222;
     }
-
-    section {
-      max-width: 850px;
-      margin: 2rem auto;
-      padding: 0 1.5rem;
+    .title{margin:0;font-size:1.15rem;font-weight:700}
+    .subtitle{margin:0;color:var(--muted);font-size:.95rem}
+    nav{
+      display:flex;flex-wrap:wrap;gap:14px;align-items:center
     }
-
-    h2 {
-      color: #004080;
-      border-bottom: 2px solid #00408020;
-      padding-bottom: 0.2rem;
+    .navlink{color:var(--text);opacity:.9}
+    .navlink:hover{opacity:1}
+    .btn{
+      border:1px solid var(--border);background:var(--bg-soft);
+      padding:8px 12px;border-radius:10px;display:inline-flex;gap:8px;align-items:center;
+      box-shadow:var(--shadow);
     }
-
-    footer {
-      background: #004080;
-      color: white;
-      text-align: center;
-      padding: 1rem;
-      margin-top: 2rem;
-      font-size: 0.9em;
+    main{padding:28px 0;display:grid;gap:28px}
+    .intro{
+      background:var(--card);border:1px solid var(--border);border-radius:var(--radius);
+      padding:24px;box-shadow:var(--shadow)
     }
-
-    img.photo {
-      width: 160px;
-      border-radius: 50%;
-      display: block;
-      margin: 1rem auto;
+    h1{margin:.2em 0 .4em 0;font-size:2rem}
+    .meta{color:var(--muted);font-size:.95rem}
+    .grid{
+      display:grid;gap:18px;
+      grid-template-columns:repeat(12,1fr);
     }
-
-    ul {
-      list-style-type: square;
-      padding-left: 1.2rem;
+    .col-7{grid-column:span 7}
+    .col-5{grid-column:span 5}
+    @media (max-width: 900px){
+      .grid{grid-template-columns:1fr}
+      .col-7,.col-5{grid-column:auto}
     }
-
-    @media (max-width: 600px) {
-      header h1 { font-size: 1.6em; }
-      nav a { display: block; margin: 6px 0; }
+    .card{
+      background:var(--card);border:1px solid var(--border);border-radius:var(--radius);
+      padding:18px;box-shadow:var(--shadow)
     }
+    .list{margin:0;padding:0;list-style:none;display:grid;gap:10px}
+    .item{padding:12px;border:1px solid var(--border);border-radius:10px;background:var(--bg-soft)}
+    .item small{color:var(--muted)}
+    .tag{
+      background:transparent;border:1px solid var(--border);color:var(--muted);
+      padding:.2rem .5rem;border-radius:999px;font-size:.8rem
+    }
+    footer{padding:26px 0;border-top:1px solid var(--border);color:var(--muted);font-size:.95rem}
+    .row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between}
+    .social{display:flex;gap:12px;flex-wrap:wrap}
+    .kbd{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size:.9rem;background:var(--bg-soft);border:1px solid var(--border);border-radius:6px;padding:2px 6px;color:var(--muted)}
+    /* focus */
+    :focus-visible{outline:2px dashed var(--accent);outline-offset:2px;border-radius:6px}
   </style>
 </head>
-
 <body>
 
-  <header>
-    <img src="https://via.placeholder.com/160" alt="Foto de perfil" class="photo">
-    <h1>Alejandra Tapia</h1>
-    <p>Investigadora en Estadística Aplicada y Ciencia de Datos</p>
-  </header>
+  <div class="wrap">
+    <!-- Header -->
+    <header>
+      <div class="brand">
+        <img class="avatar" src="https://via.placeholder.com/112x112.png?text=AT" alt="Foto de Alejandra">
+        <div>
+          <p class="title">Alejandra Tapia</p>
+          <p class="subtitle">Investigadora • Estadística aplicada • Ciencia de datos</p>
+        </div>
+      </div>
+      <nav aria-label="Primaria">
+        <a class="navlink" href="#sobre">sobre mí</a>
+        <a class="navlink" href="#investigacion">líneas</a>
+        <a class="navlink" href="#publicaciones">publicaciones</a>
+        <a class="navlink" href="#notas">notas</a>
+        <a class="navlink" href="#contacto">contacto</a>
+        <button id="themeToggle" class="btn" type="button" aria-label="Cambiar tema">🌓 tema</button>
+      </nav>
+    </header>
 
-  <nav>
-    <a href="#sobre">Sobre mí</a>
-    <a href="#investigacion">Investigación</a>
-    <a href="#publicaciones">Publicaciones</a>
-    <a href="#contacto">Contacto</a>
-  </nav>
+    <!-- Intro -->
+    <section class="intro" id="sobre">
+      <h1>Hola, soy Alejandra 👋</h1>
+      <p>
+        Trabajo en el cruce entre estadística aplicada, diagnóstico de influencia local y bibliometría,
+        con aplicaciones en ciencias sociales y salud. Me interesan los métodos reproducibles,
+        los datos abiertos y la divulgación.
+      </p>
+      <p class="meta">
+        Basada en Chile · disponible para colaboraciones ·
+        <span class="tag">R</span> <span class="tag">GLMM</span> <span class="tag">bibliometría</span> <span class="tag">HCI</span>
+      </p>
+    </section>
 
-  <section id="sobre">
-    <h2>Sobre mí</h2>
-    <p>
-      Soy investigadora en estadística aplicada y ciencia de datos, con interés en modelamiento
-      estadístico, diagnóstico de influencia local, bibliometría y aplicaciones interdisciplinarias
-      en ciencias sociales y salud pública. Mi trabajo combina métodos estadísticos avanzados con
-      enfoques reproducibles y abiertos.
-    </p>
-  </section>
+    <!-- Grid -->
+    <section class="grid">
+      <div class="col-7">
+        <div class="card" id="investigacion">
+          <h2>Líneas de investigación</h2>
+          <ul class="list">
+            <li class="item"><strong>Modelos lineales y mixtos generalizados</strong><br><small>datos longitudinales, multivariados, robustez</small></li>
+            <li class="item"><strong>Diagnóstico de influencia local</strong><br><small>perturbaciones, curvatura, post-eliminación</small></li>
+            <li class="item"><strong>Bibliometría y mapeo científico</strong><br><small>co-ocurrencia, estructuras conceptuales, ciencia abierta</small></li>
+            <li class="item"><strong>Interacción humano–computador</strong><br><small>propiedad psicológica, diseño persuasivo, ELM</small></li>
+          </ul>
+        </div>
 
-  <section id="investigacion">
-    <h2>Líneas de investigación</h2>
-    <ul>
-      <li>Modelos lineales y mixtos generalizados</li>
-      <li>Diagnóstico de influencia local y robustez</li>
-      <li>Bibliometría y mapeo científico</li>
-      <li>Interacción humano–computador y psicología social</li>
-      <li>Datos longitudinales y multivariados</li>
-    </ul>
-  </section>
+        <div class="card" id="publicaciones">
+          <h2>Publicaciones seleccionadas</h2>
+          <ul class="list">
+            <li class="item">
+              2025 — <em>Improving the Modeling of Binary Response Regression…</em><br>
+              <small>DMIST &amp; CEAUL, Lisboa</small>
+            </li>
+            <li class="item">
+              2024 — <em>Bibliometric Mapping of Suicide Behavior Research…</em><br>
+              <small>Social Indicators Research</small>
+            </li>
+            <li class="item">
+              2023 — <em>Local Influence in GLMMs: A Robust Diagnostic Perspective</em><br>
+              <small>Journal of Statistical Modeling</small>
+            </li>
+          </ul>
+        </div>
+      </div>
 
-  <section id="publicaciones">
-    <h2>Publicaciones recientes</h2>
-    <ul>
-      <li>
-        Tapia, A. (2025). <em>Improving the Modeling of Binary Response Regression Based on New
-        Proposals for Statistical Diagnostics</em>. DMIST &amp; CEAUL, Lisboa.
-      </li>
-      <li>
-        Tapia, A. (2024). <em>Bibliometric Mapping of Suicide Behavior Research: Conceptual and
-        Temporal Structures</em>. <strong>Social Indicators Research</strong>.
-      </li>
-      <li>
-        Tapia, A. (2023). <em>Local Influence in GLMMs: A Robust Diagnostic Perspective</em>.
-        <strong>Journal of Statistical Modeling</strong>.
-      </li>
-    </ul>
-  </section>
+      <div class="col-5">
+        <div class="card" id="notas">
+          <h2>Notas recientes</h2>
+          <ul class="list">
+            <li class="item">
+              <strong>Lecturas: influencia local y curvatura</strong><br>
+              <small>nov 2025 · apuntes rápidos y referencias</small>
+            </li>
+            <li class="item">
+              <strong>Cómo armar un corpus para bibliometría</strong><br>
+              <small>oct 2025 · criterios de inclusión y limpieza</small>
+            </li>
+            <li class="item">
+              <strong>GLMM vs. redes neuronales</strong><br>
+              <small>sep 2025 · comparaciones prácticas</small>
+            </li>
+          </ul>
+        </div>
 
-  <section id="contacto">
-    <h2>Contacto</h2>
-    <p>
-      📧 <a href="mailto:alejandra.tapia@example.com">alejandra.tapia@example.com</a><br>
-      🔗 <a href="https://orcid.org/0000-0002-XXXX-XXXX" target="_blank">ORCID</a> |
-      <a href="https://scholar.google.com" target="_blank">Google Scholar</a> |
-      <a href="https://github.com/alejandratapia" target="_blank">GitHub</a>
-    </p>
-  </section>
+        <div class="card" id="contacto">
+          <h2>Contacto</h2>
+          <p>
+            📧 <a href="mailto:alejandra.tapia@example.com">alejandra.tapia@example.com</a><br>
+            🔗 <a href="https://orcid.org/0000-0002-XXXX-XXXX" target="_blank" rel="noopener">ORCID</a> ·
+            <a href="https://scholar.google.com" target="_blank" rel="noopener">Scholar</a> ·
+            <a href="https://github.com/alejandratapia" target="_blank" rel="noopener">GitHub</a> ·
+            <a href="https://x.com" target="_blank" rel="noopener">X</a>
+          </p>
+          <p class="meta">CV disponible a pedido.</p>
+        </div>
+      </div>
+    </section>
 
-  <footer>
-    © 2025 Alejandra Tapia – Última actualización: noviembre 2025
-  </footer>
+    <!-- Footer -->
+    <footer class="row">
+      <span>© <span id="year"></span> Alejandra Tapia</span>
+      <span>Hecho con HTML estático · <span class="kbd">git push</span> para publicar</span>
+    </footer>
+  </div>
 
+  <script>
+    // año dinámico
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // tema (oscuro/claro) con preferencia guardada
+    const KEY = 'theme-pref';
+    const root = document.documentElement;
+    function applyTheme(pref){
+      if(pref === 'dark' || pref === 'light'){ root.setAttribute('data-theme', pref); }
+      else { root.setAttribute('data-theme','auto'); }
+    }
+    const saved = localStorage.getItem(KEY) || 'dark';
+    applyTheme(saved);
+
+    document.getElementById('themeToggle').addEventListener('click', () => {
+      const current = root.getAttribute('data-theme');
+      const next = current === 'dark' ? 'light' : 'dark';
+      localStorage.setItem(KEY, next);
+      applyTheme(next);
+    });
+  </script>
 </body>
 </html>
